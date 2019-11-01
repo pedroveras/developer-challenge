@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.bcb.gov.br/SPB/SLC0001.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="DOC" type="slc:DOCType" xmlns:slc="http://www.bcb.gov.br/SPB/SLC0001.xsd"/>
+  <xs:complexType name="Grupo_SLC0001_ProdtType">
+    <xs:sequence>
+      <xs:element name="CodProdt">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="ACC"/>
+            <xs:enumeration value="VCC"/>
+            <xs:enumeration value="MCC"/>
+            <xs:enumeration value="CBC"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element type="slc:Grupo_SLC0001_LiquidProdtType" name="Grupo_SLC0001_LiquidProdt" maxOccurs="unbounded" minOccurs="0" xmlns:slc="http://www.bcb.gov.br/SPB/SLC0001.xsd"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SLC0001Type">
+    <xs:sequence>
+      <xs:element type="xs:string" name="CodMsg"/>
+      <xs:element type="xs:string" name="NumCtrlSLC"/>
+      <xs:element type="xs:string" name="ISPBIF"/>
+      <xs:element type="xs:string" name="TpInf"/>
+      <xs:element type="slc:Grupo_SLC0001_LiquidType" name="Grupo_SLC0001_Liquid" xmlns:slc="http://www.bcb.gov.br/SPB/SLC0001.xsd"/>
+      <xs:element type="xs:string" name="DtHrSLC"/>
+      <xs:element type="xs:string" name="DtMovto"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Grupo_SeqType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="NumSeq"/>
+      <xs:element type="xs:string" name="IndrCont"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Grupo_SLC0001_LiquidProdtType">
+    <xs:sequence>
+      <xs:element name="IdentdLinhaBilat">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="12345678ACC3456789"/>
+            <xs:enumeration value="12345678VCC3456789"/>
+            <xs:enumeration value="10045678VCC3456789"/>
+            <xs:enumeration value="12345678MCC1633000"/>
+            <xs:enumeration value="12345678CBC1633012"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="TpDeb_Cred">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="D"/>
+            <xs:enumeration value="C"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element type="xs:string" name="ISPBIFCredtd"/>
+      <xs:element type="xs:string" name="ISPBIFDebtd"/>
+      <xs:element name="VlrLanc">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="4000.00"/>
+            <xs:enumeration value="16990.85"/>
+            <xs:enumeration value="3171.76"/>
+            <xs:enumeration value="5462.12"/>
+            <xs:enumeration value="21446.69"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="CNPJNLiqdantDebtd">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="99929009000149"/>
+            <xs:enumeration value="47515515000198"/>
+            <xs:enumeration value="50276286000100"/>
+            <xs:enumeration value="93052785000127"/>
+            <xs:enumeration value="74816392000106"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="NomCliDebtd">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="JET"/>
+            <xs:enumeration value="BANCOBOB"/>
+            <xs:enumeration value="TRIANGULO"/>
+            <xs:enumeration value="TRIANGULOBOB"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="CNPJNLiqdantCredtd">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="17061147000194"/>
+            <xs:enumeration value="02181332000145"/>
+            <xs:enumeration value="23333472000161"/>
+            <xs:enumeration value="07284171000139"/>
+            <xs:enumeration value="30101382000100"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="NomCliCredtd">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="BANCO"/>
+            <xs:enumeration value="TRIANGULOBANCO"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element type="xs:string" name="TpTranscSLC"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Grupo_SLC0001_LiquidType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="DtLiquid"/>
+      <xs:element type="xs:string" name="NumSeqCicloLiquid"/>
+      <xs:element type="slc:Grupo_SLC0001_ProdtType" name="Grupo_SLC0001_Prodt" maxOccurs="unbounded" minOccurs="0" xmlns:slc="http://www.bcb.gov.br/SPB/SLC0001.xsd"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SISMSGType">
+    <xs:sequence>
+      <xs:element type="slc:SLC0001Type" name="SLC0001" xmlns:slc="http://www.bcb.gov.br/SPB/SLC0001.xsd"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DOCType">
+    <xs:sequence>
+      <xs:element type="slc:BCMSGType" name="BCMSG" xmlns:slc="http://www.bcb.gov.br/SPB/SLC0001.xsd"/>
+      <xs:element type="slc:SISMSGType" name="SISMSG" xmlns:slc="http://www.bcb.gov.br/SPB/SLC0001.xsd"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="BCMSGType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="IdentdEmissor"/>
+      <xs:element type="xs:string" name="IdentdDestinatario"/>
+      <xs:element type="slc:Grupo_SeqType" name="Grupo_Seq" xmlns:slc="http://www.bcb.gov.br/SPB/SLC0001.xsd"/>
+      <xs:element type="xs:string" name="DomSist"/>
+      <xs:element type="xs:string" name="NUOp"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
