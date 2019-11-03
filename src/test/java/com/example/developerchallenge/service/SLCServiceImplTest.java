@@ -17,13 +17,10 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Optional;
-import org.hibernate.internal.util.xml.BufferedXMLEventReader;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -33,7 +30,6 @@ import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import sun.misc.IOUtils;
 
 @ExtendWith(MockitoExtension.class)
 class SLCServiceImplTest {
@@ -186,7 +182,7 @@ class SLCServiceImplTest {
     @Test
     void testSalvarArquivo() {
         // Act
-        service.salvarArquivo(doc);
+        service.salvaArquivo(doc);
 
         // Assert
         verify(repository).save(docArgumentCaptor.capture());
@@ -197,13 +193,13 @@ class SLCServiceImplTest {
     void testcarregarArquivo() {
         // Arrange
         when(repository.getByNuOp(NU_OP)).thenReturn(Optional.of(doc));
+        dadosArquivo = dadosArquivo.replaceAll("\t|  |    ", "");
 
         // Act
-        String xml = service.carregarArquivo(NU_OP);
+        String xml = service.baixaArquivo(NU_OP);
 
         // Assert
         xml = xml.replaceAll("    ","");
-        dadosArquivo = dadosArquivo.replaceAll("\t|  |    ", "");
         verify(repository).getByNuOp(NU_OP);
         assertEquals(dadosArquivo, xml);
     }

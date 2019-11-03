@@ -30,11 +30,11 @@ public class SLCServiceImpl implements SLCService {
         }
     }
 
-    public void salvarArquivo(Doc doc) {
+    public void salvaArquivo(Doc doc) {
         repository.save(doc);
     }
 
-    public String carregarArquivo(String nuOp) {
+    public String baixaArquivo(String nuOp) {
         Optional<Doc> doc = repository.getByNuOp(nuOp);
 
         if (doc.isPresent())
